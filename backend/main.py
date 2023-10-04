@@ -6,7 +6,7 @@ from response import llm_search_disabled, llm_search_enabled
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",  # Replace with your frontend's URL
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
@@ -23,7 +23,7 @@ class UserInput(BaseModel):
 @app.post("/search_enabled/")
 async def get_llm_response(request: Request, user_input: UserInput = None):
     payload = await request.json()
-    print(f"Received payload: {payload}")  # Debugging line
+    print(f"Received payload: {payload}")
     if user_input:
         try:
             output = llm_search_enabled(user_input.query)
